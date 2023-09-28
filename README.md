@@ -1,4 +1,4 @@
-# Proyecto-DMS
+# Proyecto-DSM
 Este repOsitorio almacena el proyecto de la materia de  Desarrollo de Software para Móviles DSM941 G01T
 
 # Autores
