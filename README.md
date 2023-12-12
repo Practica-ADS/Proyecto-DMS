@@ -15,3 +15,5 @@ Edgardo Baltazar Pérez Molina   Carnet:PM211493: Programación, diseño y lógi
 # Enlaces de interes
 
 Trello: https://trello.com/b/qzMPNE9g/desarrollo-de-software-para-m%C3%B3viles-dsm941-g01t
+
+Video de explicacion: https://drive.google.com/drive/folders/1Mbk273mD-FtmyJV981BZ_EiXv02UMqha?usp=drive_link
