@@ -17,6 +17,7 @@ class Menu : AppCompatActivity() {
         btn5 = findViewById(R.id.button5)
         btn6 = findViewById(R.id.button6)
         btn7 = findViewById(R.id.button7)
+
         btn5.setOnClickListener{
 
             val i = Intent(this,Pacientes::class.java)

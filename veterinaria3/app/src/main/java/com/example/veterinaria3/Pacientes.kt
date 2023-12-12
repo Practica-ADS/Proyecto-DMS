@@ -21,7 +21,7 @@ class Pacientes : AppCompatActivity() {
         }
         btn9.setOnClickListener{
 
-            val i = Intent(this,Doctores::class.java)
+            val i = Intent(this,Pacientes::class.java)
             startActivity(i)
         }
     }

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class Pacienteadapter: RecyclerView.Adapter<Pacienteadapter.pacienteviewholder>()
 {   private var stdlist: ArrayList<PacienteModel> = ArrayList()
     private var onClickItem:((PacienteModel) -> Unit)? = null
+    private var onClickDeleteItem:((PacienteModel) -> Unit)? = null
 
     fun addItems(items: ArrayList<PacienteModel>){
         this.stdlist = items
@@ -21,7 +22,9 @@ class Pacienteadapter: RecyclerView.Adapter<Pacienteadapter.pacienteviewholder>(
 
     }
 
-
+    fun setOnclickDeleteItem(callback:(PacienteModel)->Unit){
+        this.onClickDeleteItem = callback
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =pacienteviewholder (
         LayoutInflater.from(parent.context).inflate(R.layout.card_iten_std, parent, false)
@@ -35,6 +38,7 @@ class Pacienteadapter: RecyclerView.Adapter<Pacienteadapter.pacienteviewholder>(
         val  std = stdlist[position]
         holder.bindView(std)
         holder.itemView.setOnClickListener{ onClickItem?.invoke(std)}
+        holder.btnDelete.setOnClickListener { onClickDeleteItem?.invoke(std) }
     }
     class pacienteviewholder(var view: View) : RecyclerView.ViewHolder(view){
 
@@ -42,7 +46,7 @@ class Pacienteadapter: RecyclerView.Adapter<Pacienteadapter.pacienteviewholder>(
         private var name = view.findViewById<TextView>(R.id.tvName)
         private var raza = view.findViewById<TextView>(R.id.tvraza)
         private var encargado = view.findViewById<TextView>(R.id.tven)
-        private var btnDelete = view.findViewById<TextView>(R.id.btnDelete)
+         var btnDelete = view.findViewById<TextView>(R.id.btnDelete)
 
         fun bindView(std: PacienteModel){
             id.text = std.id.toString()

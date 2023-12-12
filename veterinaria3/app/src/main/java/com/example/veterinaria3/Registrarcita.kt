@@ -11,94 +11,98 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.log
 
-class Registrar_Doctores : AppCompatActivity() {
+class Registrarcita : AppCompatActivity() {
 
     private lateinit var edName: EditText
-    private lateinit var edpuesto: EditText
-    private  lateinit var edarea: EditText
+    private lateinit var edfecha: EditText
+    private  lateinit var edhora: EditText
+    private  lateinit var edencargado: EditText
     private lateinit var btnAdd: Button
     private lateinit var btnview: Button
     private lateinit var btnUpdate: Button
 
-    private lateinit var sqlitehelper: SQLitehelper2
+    private lateinit var sqlitehelper: SQLitehelper3
     private lateinit var recyclerView: RecyclerView
-    private  var adapter: Doctoradapter?=null
-    private var std:DoctorModel? = null
+    private  var adapter: Citaadapter?=null
+    private var std:CitaModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registrar_doctores)
+        setContentView(R.layout.activity_registrarcita)
+
 
         initview()
         initRecyclerview()
-        sqlitehelper = SQLitehelper2(this)
+        sqlitehelper = SQLitehelper3(this)
 
-        btnAdd.setOnClickListener { adddoctor() }
-        btnview.setOnClickListener { getdoctor() }
-        btnUpdate.setOnClickListener { updateDoctor() }
+        btnAdd.setOnClickListener { addCita() }
+        btnview.setOnClickListener { getCita() }
+        btnUpdate.setOnClickListener { updateCita() }
         adapter?.setOnclickItem {
             Toast.makeText(this, it.name, Toast.LENGTH_SHORT).show()
 
             edName.setText(it.name)
-            edpuesto.setText(it.puesto)
-            edarea.setText(it.area)
+            edfecha.setText(it.fecha)
+            edhora.setText(it.hora)
+            edencargado.setText(it.encargado)
             std = it
 
         }
         adapter?.setOnclickDeleteItem {
-            deleteDoctor(it.id)
+            deleteCita(it.id)
         }
 
     }
 
-    private fun getdoctor(){
+    private fun getCita(){
 
-        val stdlist = sqlitehelper.getAllDoctores()
+        val stdlist = sqlitehelper.getAllCitas()
         Log.e("pppp", "${stdlist.size}")
 
         adapter?.addItems(stdlist)
     }
 
-    private fun adddoctor(){
+    private fun addCita(){
 
         val name = edName.text.toString()
-        val puesto = edpuesto.text.toString()
-        val area= edarea.text.toString()
+        val fecha = edfecha.text.toString()
+        val hora= edhora.text.toString()
+        val encargado= edencargado.text.toString()
 
-        if (name.isEmpty() || puesto.isEmpty() || area.isEmpty()){
+        if (name.isEmpty() || fecha.isEmpty() || hora.isEmpty()||encargado.isEmpty()){
             Toast.makeText(this, "Please enter required field", Toast.LENGTH_SHORT).show()
         }
         else{
-            val std = DoctorModel(name=name, puesto = puesto, area = area)
-            val status = sqlitehelper.insertDoctor(std)
+            val std = CitaModel(name=name, fecha = fecha, hora = hora, encargado = encargado)
+            val status = sqlitehelper.insertCita(std)
 
             if (status > -1){
-                Toast.makeText(this, "doctor added", Toast.LENGTH_SHORT ).show()
+                Toast.makeText(this, "cita added", Toast.LENGTH_SHORT ).show()
                 clearEditText()
-                getdoctor()
+                getCita()
             }
             else{
                 Toast.makeText(this, "Record not saved", Toast.LENGTH_SHORT).show()
-                Toast.makeText(this, status.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun updateDoctor(){
+    private fun updateCita(){
 
         val name = edName.text.toString()
-        val puesto = edpuesto.text.toString()
-        val area= edarea.text.toString()
+        val fecha = edfecha.text.toString()
+        val hora= edhora.text.toString()
+        val encargado= edencargado.text.toString()
 
-        if (name == std?.name && puesto ==std?.puesto && area == std?.area){
+        if (name == std?.name && fecha ==std?.fecha && hora == std?.hora && encargado == std?.encargado){
             Toast.makeText(this, "record not changed", Toast.LENGTH_SHORT).show()
             return
         }
         if (std == null)return
 
 
-        val std = DoctorModel(id = std!!.id, name = name, puesto = puesto, area = area)
-        val status = sqlitehelper.UpdateDoctor(std)
+        val std = CitaModel(id = std!!.id, name = name, fecha = fecha, hora = hora, encargado=encargado)
+        val status = sqlitehelper.UpdateCita(std)
 
         if (status > -1){
             clearEditText()
@@ -107,19 +111,19 @@ class Registrar_Doctores : AppCompatActivity() {
             Toast.makeText(this,    "Update failed", Toast.LENGTH_SHORT ).show()
         }
 
-        getdoctor()
+    getCita()
 
     }
 
-    private fun deleteDoctor(id:Int){
+    private fun deleteCita(id:Int){
 
 
         val builder = AlertDialog.Builder(this)
         builder.setMessage("Are you sure you want to delete item")
         builder.setCancelable(true)
         builder.setPositiveButton("yes"){ dialog, _ ->
-            sqlitehelper.deletedoctorById(id)
-            getdoctor()
+            sqlitehelper.deletecitaById(id)
+            getCita()
 
             dialog.dismiss()
 
@@ -136,26 +140,28 @@ class Registrar_Doctores : AppCompatActivity() {
 
     private fun clearEditText() {
         edName.setText("")
-        edpuesto.setText("")
-        edarea.setText("")
+        edfecha.setText("")
+        edhora.setText("")
+        edencargado.setText("")
         edName.requestFocus()
     }
 
     private  fun initRecyclerview(){
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = Doctoradapter()
+        adapter = Citaadapter()
         recyclerView.adapter = adapter
     }
 
     private fun initview(){
 
-        edName = findViewById(R.id.editTextText7)
-        edpuesto = findViewById(R.id.editTextText8)
-        edarea = findViewById(R.id.editTextText9)
-        btnAdd = findViewById(R.id.button18)
-        btnview = findViewById(R.id.button19)
-        btnUpdate =findViewById(R.id.button20)
-        recyclerView = findViewById(R.id.recycleview2)
+        edName = findViewById(R.id.editTextText10)
+        edfecha = findViewById(R.id.editTextText11)
+        edhora = findViewById(R.id.editTextText12)
+        edencargado = findViewById(R.id.editTextText13)
+        btnAdd = findViewById(R.id.button21)
+        btnview = findViewById(R.id.button22)
+        btnUpdate =findViewById(R.id.button23)
+        recyclerView = findViewById(R.id.recycleview3)
     }
 
 

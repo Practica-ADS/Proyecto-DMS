@@ -11,39 +11,55 @@
         android:layout_width="225dp"
         android:layout_height="48dp"
         android:gravity="center"
-        android:text="Agregar Pacientes"
-        tools:layout_editor_absoluteX="93dp" />
+        android:text="Agregar Doctor"
+        app:layout_constraintBottom_toTopOf="@+id/editTextText7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
 
     <EditText
-        android:id="@+id/editTextText4"
+        android:id="@+id/editTextText7"
         android:layout_width="217dp"
         android:layout_height="51dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="text"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="95dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextText8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText5"
+        android:id="@+id/editTextText8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Apellido"
+        android:hint="Puesto"
         android:inputType="text"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="184dp" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextText9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText7"
+        app:layout_constraintVertical_bias="0.5" />
 
     <EditText
-        android:id="@+id/editTextText6"
+        android:id="@+id/editTextText9"
         android:layout_width="207dp"
         android:layout_height="46dp"
         android:ems="10"
-        android:hint="Especialidad"
+        android:hint="Area"
         android:inputType="text"
-        tools:layout_editor_absoluteX="104dp"
-        tools:layout_editor_absoluteY="262dp" />
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText8"
+        app:layout_constraintVertical_bias="0.5" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -51,11 +67,15 @@
 
         android:layout_height="wrap_content"
         android:gravity="center"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="351dp">
+        app:layout_constraintBottom_toTopOf="@+id/recycleview2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText9"
+        app:layout_constraintVertical_bias="0.5">
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/button18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="agregar"
@@ -63,16 +83,27 @@
             tools:layout_editor_absoluteY="401dp" />
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/button19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ver" />
+
+        <Button
+            android:id="@+id/button20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleview"
+        android:id="@+id/recycleview2"
         android:layout_width="413dp"
         android:layout_height="307dp"
-        tools:layout_editor_absoluteY="424dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.978" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
